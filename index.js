@@ -10,9 +10,10 @@ fetch("https://api.pexels.com/v1/search?query=your-query", {
     }
 
 ).then(e => e.json()).then(data => {
-
+    let halflenght = Math.floor(data.photos.length / 2)
+    console.log(halflenght)
     btnLoadImage.addEventListener("click", function() {
-        for (let i = 0; i < data.photos.length; i++) {
+        for (let i = 0; i < halflenght; i++) {
             divImage.innerHTML += `<div class="col-md-4">
                         <div class="card mb-4 shadow-sm">
                         <img class="bd-placeholder-img card-img-top" width="100%" height="225" src=${data.photos[i].src.original}>
@@ -44,3 +45,13 @@ fetch("https://api.pexels.com/v1/search?query=your-query", {
         }
     })
 })
+let btnLoadImage = document.getElementById("loadImage")
+divImage = document.querySelector(".image")
+console.log(divImage)
+fetch("https://api.pexels.com/v1/search?query=your-query", {
+            "method": "GET",
+            "mode": 'cors', // no-cors, *cors, same-origin
+            "cache": 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            "credentials": 'same-origin',
+            "headers": { "Authorization": "563492ad6f917000010000018b84cc9b06444d71933582a04a5a32ce" }
+        }
